@@ -1,41 +1,97 @@
-# Student_Analysis
-Student Performance Predictor
+# 🎓 Student Performance Predictor  
 
-This project is a Flask-based web application that predicts student performance based on factors such as attendance, credit points, CGPA, extra-curricular activities, and skills known. It utilizes a machine learning model to classify performance levels and display results on a web interface.
+A **Flask-based web application** that predicts student performance based on **Attendance, CGPA, Credit Points, Extra-Curricular Activities, and Skills Known**.  
+It uses a **machine learning model (Random Forest Classifier)** trained on real student data to generate predictions.  
 
-Project Overview
+🔗 **Live Demo:** [Student Performance Predictor](https://student-performance-predictor-egcl.onrender.com)  
 
-The application follows a three-layered architecture:
+---
 
-Frontend (index.html) – A simple web form where users enter student details.
-Backend (app.py) – A Flask server that processes user inputs and interacts with the trained model.
-Machine Learning (train_model.py) – A Python script that trains and saves a prediction model.
-How It Works
+## 📂 **Project Structure**  
+/Student_Analysis │-- app.py # Flask backend (loads trained ML model) │-- train_model.py # ML training script (creates model.pkl) │-- student_performance.csv # Dataset used for training │-- model.pkl # Saved trained ML model │-- index.html # Frontend UI (HTML form) │-- static/ # CSS & assets (if any) │-- templates/ # Flask templates │-- requirements.txt # Dependencies │-- Procfile # Deployment configuration for Render │-- README.md # Project documentation
 
-User Input – The user provides details such as attendance percentage, CGPA, credit points, etc., in the web form (index.html).
-Data Processing – The form data is sent to the Flask backend (app.py) via a POST request.
-Model Prediction – app.py loads the trained model (train_model.py output) and predicts the student's performance.
-Result Display – The predicted performance, level, and badge are shown on the webpage.
-Project Structure
 
-|-- index.html          # Frontend - User Input Form & Result Display
-|-- app.py              # Backend - Flask Server & Model Handling
-|-- train_model.py      # Machine Learning - Model Training & Saving
-|-- model.pkl           # Saved Trained Model (Generated after training)
-|-- README.md           # Project Documentation
-Setup & Execution
+---
 
-1. Install Dependencies
-Ensure you have Python installed, then run:
+## 🚀 **Features**
+✅ **Predicts performance** using real-world student data  
+✅ **Uses machine learning** (Random Forest model) for accurate classification  
+✅ **Assigns badges** (Gold, Silver, Bronze, No Badge) dynamically  
+✅ **Simple UI** with real-time performance feedback  
+✅ **Live Deployment** on Render  
 
-pip install flask scikit-learn pandas
-2. Train the Model
-Before running the app, train the model if it's not already trained:
+---
+
+## 🛠️ **Setup & Installation**
+### **1️⃣ Clone the Repository**
+```bash
+git clone https://github.com/Yesaswi33/Student_Analysis.git
+cd Student_Analysis
+2️⃣ Install Dependencies
+pip install -r requirements.txt
+3️⃣ Train the Model
+If you modify student_performance.csv, retrain the model:
 
 python train_model.py
-This generates model.pkl, a saved machine learning model.
+This creates a model.pkl file.
 
-3. Run the Flask App
+4️⃣ Run Flask App Locally
 python app.py
-Then, open http://127.0.0.1:5000/ in your web browser.
+Visit http://127.0.0.1:5011/ in your browser.
+
+🚀 Deployment on Render
+
+This app is live at:
+🔗 Student Performance Predictor
+
+1️⃣ Push Your Code to GitHub
+git add .
+git commit -m "Updated model/UI"
+git push origin main
+2️⃣ Deploy on Render
+Go to Render Dashboard → Click "New Web Service"
+Connect your GitHub repository
+Set Build Command:
+pip install -r requirements.txt
+Set Start Command:
+gunicorn app:app
+Click Deploy 🎉
+✅ Now your app will be live with every GitHub update!
+
+📦 Usage Guide
+
+🔹 User Inputs
+Attendance (%) (e.g., 85)
+Credit Points (e.g., 25)
+CGPA (e.g., 7.5)
+Extra-Curricular Activities (Yes/No)
+Skills Known (e.g., 5)
+🔹 Output Predictions
+The app predicts Performance Level & Badge:
+
+Performance	Badge
+Excellent	Gold
+Good	Silver
+Average	Bronze
+Poor	No Badge
+It also provides personalized improvement suggestions based on the prediction.
+
+🤝 Contributing
+
+Want to improve this project? Follow these steps:
+
+Fork the repo
+Create a new branch (git checkout -b feature-branch)
+Commit changes (git commit -m "Added new feature")
+Push to GitHub (git push origin feature-branch)
+Open a Pull Request 🚀
+⚖️ License
+
+This project is open-source and available under the MIT License.
+
+✨ Author & Acknowledgment
+
+👨‍💻 Developed by: Yesaswi
+📌 Status: ✅ Live & Working
+
 
