@@ -4,40 +4,38 @@ import numpy as np
 
 app = Flask(__name__)
 
-# Improved prediction logic considering all input factors
-def predict_performance(attendance, credit_points, cgpa, extra_curricular, skills_known):
-    # Assigning weights to each factor
-    score = (cgpa * 4) + (attendance * 0.5) + (credit_points * 1.5) + (extra_curricular * 2) + (skills_known * 1)
+# Load your model or any necessary data
+# For simplicity, assuming a simple condition for prediction based on input
 
-    # Classifying performance based on total score
-    if score >= 40:
+def predict_performance(attendance, credit_points, cgpa, extra_curricular, skills_known):
+    # Example prediction logic (replace with actual model or logic)
+    if cgpa > 8.0 and attendance > 75:
         return "Excellent", "Gold"
-    elif score >= 30:
+    elif cgpa > 6.0 and attendance > 60:
         return "Good", "Silver"
-    elif score >= 20:
-        return "Average", "Bronze"
     else:
-        return "Needs Improvement", "No Badge"
+        return "Needs Improvement", "Bronze"
 
 @app.route('/', methods=['GET', 'POST'])
 def home():
     prediction = None
     level = None
     badge = None
-
     if request.method == 'POST':
-        # Retrieve and convert form data
+        # Retrieve data from the form
         attendance = float(request.form['attendance'])
         credit_points = float(request.form['credit_points'])
         cgpa = float(request.form['cgpa'])
         extra_curricular = int(request.form['extra_curricular'])
         skills_known = int(request.form['skills_known'])
-
+        
         # Get prediction
-        prediction, badge = predict_performance(attendance, credit_points, cgpa, extra_curricular, skills_known)
-        level = prediction  # Level and prediction are the same
-
+        prediction, level = predict_performance(attendance, credit_points, cgpa, extra_curricular, skills_known)
+        badge = level
+    
     return render_template('index.html', prediction=prediction, level=level, badge=badge)
 
 if __name__ == '__main__':
-    app.run(debug=True, port=5011)
+    app.run(debug=True, port=5001)  
+
+
